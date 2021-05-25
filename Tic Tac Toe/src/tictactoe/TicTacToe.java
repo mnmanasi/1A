@@ -2,7 +2,7 @@ package tictactoe;
 
 /**
  * 
- * @author 
+ * @author Manasi Mangalvedhe
  *
  */
 
@@ -20,8 +20,8 @@ public class TicTacToe {
 	    
 	    public TicTacToe() {
 	    	turn = 0;
-	    	for(String[] row : board) {
-	    		for(String col : row) {
+	    	for(int row = 0; row < board.length; row++) {
+	    		for(int col = 0; col < board[row].length; col++) {
 	    			board[row][col] = "-";
 	    		}
 	    	}
@@ -94,9 +94,9 @@ public class TicTacToe {
 	   public boolean checkRow()
 	   {
 		   for(int r = 0; r < board.length; r++) {
-				   if(board[r][0].equals(board[r][1]) && board[r][1].equals(board[r][2])) {
-					   return true;
-				   }
+			   if(board[r][0].equals(board[r][1]) && board[r][1].equals(board[r][2])) {
+				   return true;
+			   }
 		   }
 		   return false;
 	   }
@@ -110,7 +110,12 @@ public class TicTacToe {
 	   
 	   public boolean checkCol()
 	   {
-	          
+		   for(int c = 0; c < board[0].length; c++) {
+			   if(board[0][c].equals(board[1][c]) && board[1][c].equals(board[2][c])) {
+				   return true;
+			   } 
+		   }
+		   return false;
 	   }
 	   
 	   
@@ -122,7 +127,13 @@ public class TicTacToe {
 	   
 	   public boolean checkDiag()
 	   {
-
+		   if(board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
+			   return true;
+		   }
+		   else if (board[0][2].equals(board[1][1]) && board[1][1].equals(board[2][0])) {
+			   return true;
+		   }
+		   return false;
 	   }
 	   
 	   /**
@@ -132,7 +143,7 @@ public class TicTacToe {
 	    */
 	   public boolean checkWin()
 	   {
-	       
+	       return (checkRow() || checkCol() || checkDiag());
 	   }
 
 }
